@@ -6,7 +6,7 @@ Background: setUp for tests
 	Given user launch "chrome" browser with reportFile "Assignment1Reoprt"
 	When  user open url "https://www.anz.com.au/personal/home-loans/calculators-tools/much-borrow/"
 	Then  "Home loan borrowing power calculator"  page should be appeared
-  
+ # @assignment1
   Scenario: a person with the following details
     Given application type "Single"
     And No of dependants "0"
