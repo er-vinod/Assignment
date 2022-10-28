@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 		features = {"src/test/resources/assignment1.feature","src/test/resources/Assignment2.feature"},
 		glue="stepDefinition",
 		dryRun=false,
-		tags = "@assignment2",
+		//tags = "@test",
 		plugin= {"pretty","html:testoutput.html"},
 		monochrome = true	
 		)
