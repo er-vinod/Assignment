@@ -3,10 +3,12 @@
 Feature: Home loan borrowing power calculator
 
 Background: setUp for tests
-	Given user launch "chrome" browser with reportFile "Assignment1Reoprt"
+	Given user launch "chrome" browser
 	When  user open url "https://www.anz.com.au/personal/home-loans/calculators-tools/much-borrow/"
 	Then  "Home loan borrowing power calculator"  page should be appeared
- # @assignment1
+	
+	
+ @assignment1
   Scenario: a person with the following details
     Given application type "Single"
     And No of dependants "0"

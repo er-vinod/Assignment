@@ -1,18 +1,19 @@
 Feature:  Register on the website
 
-
+@assignment2
 Scenario: Click Signin on the landing page
-	Given user launch "chrome" browser with reportFile "Assignment2Reoprt"
+	Given user launch "chrome" browser
 	And 	user open url "http://automationpractice.com/index.php"
 	When  user click on Signin button
 	Then  "Login - My Store"  page should be appeared
 	
+
 Scenario: Create Account by entering email address
-	Given user email Address "abc987@abcd.efghi"
+	Given user email Address "abc98256245@abcd.efghi"
 	When user click on Create Account button
 	Then  "Login - My Store"  page should be appeared
 
-	
+
 Scenario:  Enter details on the Your Personal Information
 	Given user first name "QA"
 	And user last name "tester"
@@ -28,26 +29,22 @@ Scenario:  Enter details on the Your Personal Information
 	When user click on Register button
 	Then "My account - My Store"  page should be appeared
 	And  user name and surname should be displayed "QA tester"
-
+	
+@assignment2
 Scenario: Logout And Login
 	Given Email "abc123@abcd.efghi" and Password "abcd@123"
 	When click on signin button
 	Then "My account - My Store"  page should be appeared
 
-
+@assignment2
 Scenario: Add a product to the cart
 	Given a product page
 	When select a product
 	And get product detail
 	Then click addtocart
 	
-
+@assignment2
 Scenario: Proceed to the checkout page and continue till payments
 	Given checkout
 	When save Product Detail
 	Then verify product details
-
-	
-	
-	
- 

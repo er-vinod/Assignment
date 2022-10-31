@@ -1,7 +1,10 @@
 package stepDefinition;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 
+import io.cucumber.java.BeforeAll;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,10 +18,11 @@ public class AssignmentSteps {
 	AutomationPractice ap;
 	static String productName, productPrice;
 	String productNameAtPayment, productPriceAtPayment;
+	
+	
 
-	@Given("user launch {string} browser with reportFile {string}")
-	public void user_launch_browser_with_report_file(String browser, String report) {
-		util.initExentReport(report);
+	@Given("user launch {string} browser")
+	public void user_launch_browser_with_report_file(String browser) {
 		util.launchChromeBrowser(browser);
 		
 	}
@@ -27,12 +31,11 @@ public class AssignmentSteps {
 	@When("user open url {string}")
 	public void user_open_url(String url) {
 		if(url.contains("automationpractice")) {
-			util.getExtentLogger("assignment2");
+			//util.getExtentLogger("assignment2");
 			ap=new AutomationPractice();
 		}
 		
 		if(url.contains("www.anz.com.au")) {
-			util.getExtentLogger("assignment1");
 			br=new Borrow();
 		}
 		
@@ -42,8 +45,9 @@ public class AssignmentSteps {
 
 	@Then("{string}  page should be appeared")
 	public void page_should_be_appeared(String string) {
-		
-	    Assert.assertTrue(util.getTitle(string).contains(string));
+	
+			 Assert.assertTrue(util.getTitle(string).contains(string));
+			
 	    
 	}
 
@@ -115,7 +119,6 @@ public class AssignmentSteps {
 	@Then("has a borrowing estimate of ${string}")
 	public void has_a_borrowing_estimate_of_$(String string) {
 	    Assert.assertTrue(br.getBorrowResult().contains(string));
-		util.flushReport();
 	    
 	}
 	
@@ -127,7 +130,6 @@ public class AssignmentSteps {
 	@Then("returns the following message: {string}")
 	public void returns_the_following_message(String string) {
 	   String msg = br.getErrorText();
-	   util.flushReport();
 	   Assert.assertTrue(string.equals(msg));
 	}
 	
@@ -221,6 +223,13 @@ public class AssignmentSteps {
 	@Given("Email {string} and Password {string}")
 	public void email_and_password(String string, String string2) {
 	   ap = new AutomationPractice();
+	   try {
+		   ap.logout();
+	} catch (NoSuchElementException e) {
+		
+	}
+	  
+	   ap = new AutomationPractice();
 	   ap.enterLoginDetails(string, string2);
 	}
 	@When("click on signin button")
@@ -254,7 +263,6 @@ public class AssignmentSteps {
 	@Then("click addtocart")
 	public void click_addtocart() {
 	   ap.addToCart();
-	   util.flushReport();
 	}
 
 	
@@ -275,7 +283,6 @@ public class AssignmentSteps {
 	public void verify_product_details() {
 	   Assert.assertTrue(productNameAtPayment.equalsIgnoreCase(productName));
 	   Assert.assertTrue(productPriceAtPayment.equalsIgnoreCase(productPrice));
-	   util.flushReport();
 
 	}
 
